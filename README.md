@@ -20,12 +20,13 @@ onStepBegin After Hooks 2
 onStepEnd After Hooks 2
 onTestEnd 2
 ```
+Notice attachments count in onStepEnd-s.
 
 #### Run Playwright with Blob reporter and then merge
 ```
 npx playwright test --shard 1/1
 ```
-And run merge:
+Merge:
 ```
 npx playwright merge-reports --reporter ./reporter.ts ./blob-report
 ```
