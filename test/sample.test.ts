@@ -1,12 +1,10 @@
-import { test as base } from '@playwright/test';
+import { test } from '@playwright/test';
 
-const test = base.extend<{myFixture: void}>({
-  myFixture: async ({}, use) => {
-    await use();
-    throw new Error('foo'); // <- throw error in fixture, after use()
-  }
-});
-
-test('my test', async ({ page, myFixture }) => {
-  await page.goto('https://playwright.dev');
+test('my test', async () => {
+  await test.step('step 1', async () => {
+    await test.info().attach('my attachment', { body: 'foo' });
+  });
+  await test.step('step 2', async () => {
+    await test.info().attach('my attachment', { body: 'bar' });
+  });
 });
