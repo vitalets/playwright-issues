@@ -1,19 +1,18 @@
 /**
  * Custom reporter that prints step info to stdout.
  */
-import { Reporter, TestCase, TestResult, TestStep } from '@playwright/test/reporter';
+import { FullProject } from '@playwright/test';
+import { FullResult, Reporter, TestCase, TestResult } from '@playwright/test/reporter';
 
-class MyReporter implements Reporter {
-  onStepBegin(test: TestCase, result: TestResult, step: TestStep) {
-    console.log('onStepBegin', step.title, result.attachments.length)
-  }
-
-  onStepEnd(test: TestCase, result: TestResult, step: TestStep) {
-    console.log('onStepEnd', step.title, result.attachments.length)
-  }
+export default class MyReporter implements Reporter {
+  projects = new Set<FullProject | undefined>();
 
   onTestEnd(test: TestCase, result: TestResult) {
-    console.log('onTestEnd', result.attachments.length)
+    this.projects.add(test.parent.project());
+  }
+
+  onEnd() {
+    console.log('projects', this.projects);
   }
 
   printsToStdio() {
@@ -21,4 +20,3 @@ class MyReporter implements Reporter {
   }
 }
 
-export default MyReporter;

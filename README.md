@@ -1,49 +1,84 @@
-## Steps
+## Steps to reporduce
 
-#### Run Playwright with custom reporter
 ```
-npx playwright test
+# 1. run first shard and copy blob report
+npx playwright test --shard 1/2
+mkdir -p all-blob-reports && cp -r blob-report/ all-blob-reports
+
+# 2. run second shard
+npx playwright test --shard 2/2
+mkdir -p all-blob-reports && cp -r blob-report/ all-blob-reports
+
+# 3. merge reports
+npx playwright merge-reports --reporter=reporter.ts all-blob-reports
 ```
-Output:
+Output (2 projects):
 ```
-onStepBegin Before Hooks 0
-onStepEnd Before Hooks 0
-onStepBegin step one 0
-onStepBegin attach "my attachment" 0
-onStepEnd attach "my attachment" 1
-onStepEnd step one 1
-onStepBegin step two 1
-onStepBegin attach "my attachment" 1
-onStepEnd attach "my attachment" 2
-onStepEnd step two 2
-onStepBegin After Hooks 2
-onStepEnd After Hooks 2
-onTestEnd 2
+projects Set(2) {
+  {
+    __projectId: '038c2392796d4a22',
+    metadata: { reportName: undefined },
+    name: '',
+    outputDir: '/Users/vitalets/projects/playwright-issues/test-results',
+    repeatEach: 1,
+    retries: 0,
+    testDir: '',
+    testIgnore: [],
+    testMatch: [ '**/*.@(spec|test).?(c|m)[jt]s?(x)' ],
+    timeout: 30000,
+    grep: [ /.*/ ],
+    grepInvert: [],
+    dependencies: [],
+    teardown: undefined,
+    snapshotDir: '',
+    use: {}
+  },
+  {
+    __projectId: '1eb99aebfb39e9e7',
+    metadata: { reportName: undefined },
+    name: '',
+    outputDir: '/Users/vitalets/projects/playwright-issues/test-results',
+    repeatEach: 1,
+    retries: 0,
+    testDir: '',
+    testIgnore: [],
+    testMatch: [ '**/*.@(spec|test).?(c|m)[jt]s?(x)' ],
+    timeout: 30000,
+    grep: [ /.*/ ],
+    grepInvert: [],
+    dependencies: [],
+    teardown: undefined,
+    snapshotDir: '',
+    use: {}
+  }
+}
 ```
 Notice attachments count in onStepEnd-s.
 
-#### Run Playwright with Blob reporter and then merge
+#### Run Playwright without merge reports
 ```
-npx playwright test --shard 1/1
+npx playwright test
 ```
-Merge:
+Output (1 project):
 ```
-npx playwright merge-reports --reporter ./reporter.ts ./blob-report
+projects Set(1) {
+  {
+    grep: /.*/,
+    grepInvert: null,
+    outputDir: '/Users/vitalets/projects/playwright-issues/test-results',
+    repeatEach: 1,
+    retries: 0,
+    metadata: undefined,
+    name: '',
+    testDir: '/Users/vitalets/projects/playwright-issues',
+    snapshotDir: '/Users/vitalets/projects/playwright-issues',
+    testIgnore: [],
+    testMatch: '**/*.@(spec|test).?(c|m)[jt]s?(x)',
+    timeout: 30000,
+    use: {},
+    dependencies: [],
+    teardown: undefined,
+    __projectId: ''
+  }
+}
 ```
-Output:
-```
-onStepBegin Before Hooks 0
-onStepEnd Before Hooks 0
-onStepBegin step one 0
-onStepBegin attach "my attachment" 0
-onStepEnd attach "my attachment" 0
-onStepEnd step one 0
-onStepBegin step two 0
-onStepBegin attach "my attachment" 0
-onStepEnd attach "my attachment" 0
-onStepEnd step two 0
-onStepBegin After Hooks 0
-onStepEnd After Hooks 0
-onTestEnd 2
-```
-Notice 0 attachments count after each step.
