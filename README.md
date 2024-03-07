@@ -5,7 +5,7 @@
 npx playwright test --shard 1/2
 mkdir -p all-blob-reports && cp -r blob-report/ all-blob-reports
 
-# 2. run second shard
+# 2. run second shard and copy blob report
 npx playwright test --shard 2/2
 mkdir -p all-blob-reports && cp -r blob-report/ all-blob-reports
 
@@ -53,7 +53,6 @@ projects Set(2) {
   }
 }
 ```
-Notice attachments count in onStepEnd-s.
 
 #### Run Playwright without merge reports
 ```
