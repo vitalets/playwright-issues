@@ -1,9 +1,9 @@
 import { test as base } from '@playwright/test';
 
 const test = base.extend<{myFixture: void}>({
-  myFixture: async ({}, use) => {
+  myFixture: async ({}, use, testInfo) => {
     await use();
-    throw new Error('foo'); // <- throw error in fixture, after use()
+    await new Promise((r) => setTimeout(r, testInfo.timeout + 100));
   }
 });
 
