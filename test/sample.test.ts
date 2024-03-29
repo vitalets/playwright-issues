@@ -1,12 +1,5 @@
-import { test as base } from '@playwright/test';
+import { test } from './fixtures';
 
-const test = base.extend<{myFixture: void}>({
-  myFixture: async ({}, use, testInfo) => {
-    await use();
-    await new Promise((r) => setTimeout(r, testInfo.timeout + 100));
-  }
-});
+test('my test', async ({ timeoutedFixture }) => {
 
-test('my test', async ({ page, myFixture }) => {
-  await page.goto('https://playwright.dev');
 });
