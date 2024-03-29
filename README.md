@@ -1,7 +1,7 @@
 ## If fixture timeouts in teardown phase, no other fixtures run (1.43)
 There are two fixtures:
 - `timeoutedFixture` - timeouts in teardown phase
-- `anotherFixture` - log setup and tardown phases
+- `anotherFixture` - logs setup and teardown phases
 
 #### Steps to reproduce
 
