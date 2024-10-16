@@ -1,11 +1,7 @@
-import { test as base } from '@playwright/test';
-
-const test = base.extend<{myFixture: void}>({
-  myFixture: async ({}, use) => {
-    await use();
-  }
-});
+import { test } from '@playwright/test';
 
 test('my test', async ({ page }) => {
-  await page.goto('https://playwright.dev');
+  await test.step('Step 1', async () => {
+    await page.goto('https://playwright.dev');
+  });
 });

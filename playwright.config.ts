@@ -1,5 +1,6 @@
 import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
-  reporter: './reporter.ts',
+  testDir: 'test',
+  reporter: [['html', { open: 'never' }]],
 });
