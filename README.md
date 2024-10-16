@@ -23,6 +23,7 @@ When clicking on `Step 1` reporter shows only `page.goto(https://playwright.dev)
 
 ### Expected result
 Reporter shows step code snippet:
+
 <img width="50%" src="https://github.com/user-attachments/assets/c5244611-e3d2-4bc4-a528-b3c43e210127">
 
 ## Possible reason
