@@ -22,7 +22,8 @@ There are two `stdout` attachments:
 2. binary `stdout` attachment
 
 Report:
-![image](https://github.com/user-attachments/assets/8fb733c5-0284-4a83-b666-1ee737bd84c8)
+
+<img width="60%" src="https://github.com/user-attachments/assets/8fb733c5-0284-4a83-b666-1ee737bd84c8">
 
 ### Expected result
 Single `stdout` attachment containing all outputs:
