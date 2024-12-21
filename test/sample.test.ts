@@ -1,4 +1,4 @@
-import { test as base } from '@playwright/test';
+import { test as base, expect } from '@playwright/test';
 
 const test = base.extend<{myFixture: void}>({
   myFixture: async ({}, use) => {
@@ -7,5 +7,5 @@ const test = base.extend<{myFixture: void}>({
 });
 
 test('my test', async ({ page }) => {
-  await page.goto('https://playwright.dev');
+  throw new Error('foo');
 });
