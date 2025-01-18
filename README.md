@@ -1,4 +1,4 @@
-## [BUG]: testInfo.attach() and testInfo.attachments.push() produce different reporter data
+## [REGRESSION]: testInfo.attach() and testInfo.attachments.push() produce different reporter data
 
 ### Steps to reproduce
 
