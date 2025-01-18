@@ -1,11 +1,12 @@
-import { test as base } from '@playwright/test';
+import { test} from '@playwright/test';
 
-const test = base.extend<{myFixture: void}>({
-  myFixture: async ({}, use) => {
-    await use();
-  }
-});
-
-test('my test', async ({ page }) => {
-  await page.goto('https://playwright.dev');
+test('my test', async () => {
+  await test.step('step', async () => {
+    test.info().attachments.push({
+      name: 'foo-push',
+      body: Buffer.from('foo-content'),
+      contentType: 'text/plain'
+    });
+    await test.info().attach('foo-attach', { body: 'foo-content' })
+  });
 });

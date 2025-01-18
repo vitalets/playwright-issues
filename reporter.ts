@@ -4,6 +4,6 @@ import type {
 
 export default class MyReporter implements Reporter {
   onTestEnd(test: TestCase, result: TestResult) {
-    console.log('annotations:', test.annotations);
+    console.log(result.steps[1]);
   }
 }
