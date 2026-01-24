@@ -1,4 +1,4 @@
-## [BUG]: ...
+## [BUG]: Test files with '@' in name produce unexpected tags
 
 ### Steps to reproduce
 
@@ -14,5 +14,8 @@ npx playwright test
 
 ### Actual result
 
+`@sample.test.ts` is added as a tag.
+
 ### Expected result
 
+No tags added.
