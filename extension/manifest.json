@@ -1,0 +1,8 @@
+{
+  "manifest_version": 3,
+  "name": "Service worker timezone reproduction",
+  "version": "1.0",
+  "background": {
+    "service_worker": "background.js"
+  }
+}
